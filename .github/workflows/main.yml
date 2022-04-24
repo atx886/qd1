@@ -33,18 +33,23 @@ jobs:
 
           PUSH_PLUS_TOKEN: ${{secrets.PUSH_PLUS_TOKEN}}
         run: |
+          apt install firefox dbus-x11 xvfb
+          sudo Xvfb :10 -ac
+          export DISPLAY=:10
+          firefox
+          cd /tmp
+          wget https://github.com/mozilla/geckodriver/releases/download/ V0.18.0/geckodriver-v0.18.0-linux64.tar.gz
+          tar -xvzf geckodriver-v0.18.0-linux64.tar.gz 
+          cp geckodriver /root/bin
+          export PATH=.:/root/bin:$PATH
+          export PATH.:/root/bin: $PATH
+          export DISPLAY=:10
 
 
-          sudo apt-get install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-          sudo apt-get install mesa-libOSMesa-devel gnu-free-sans-fonts wqy-zenhei-fonts
-          wget https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          mv chromedriver /usr/bin/
-          chmod +x /usr/bin/chromedriver
           
           python -m pip install --upgrade pip
           pip install selenium
-          pip install lxml
+
 
 
           python qd.py
