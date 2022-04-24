@@ -37,4 +37,4 @@ def dl(phone):
         '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[4]').click()
     rw()
     d.get('https://www.chaojijishi.com/h5/#/pages/subpack1/set/user-id-card-data?type=1')
-
+dl(17000651668)
