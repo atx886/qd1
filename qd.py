@@ -1,14 +1,40 @@
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+
   
-chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')#解决DevToolsActivePort文件不存在的报错
-chrome_options.add_argument('window-size=1920x3000') #指定浏览器分辨率
-chrome_options.add_argument('--disable-gpu') #谷歌文档提到需要加上这个属性来规避bug
-chrome_options.add_argument('--hide-scrollbars') #隐藏滚动条, 应对一些特殊页面
-chrome_options.add_argument('blink-settings=imagesEnabled=false') #不加载图片, 提升速度
-chrome_options.add_argument('--headless') #浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
-  
-#创建浏览器对象
-driver = webdriver.Chrome(executable_path=path, chrome_options=chrome_options)#executable_path:浏览器驱动路径
+
+options = webdriver.FirefoxOptions()
+# options.set_headless(True)
+options.add_argument("--headless")  # 设置火狐为headless无界面模式
+options.add_argument("--disable-gpu")
+d = webdriver.Firefox(options=options)
+
+
+# d = webdriver.Firefox()
+
+d.implicitly_wait(5)
+def rw():
+    time.sleep(1)
+
+
+def dl(phone):
+    d.get('https://www.chaojijishi.com/h5/#/pages/login/login?from=user')
+    d.find_element_by_xpath(
+        '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[1]/uni-input/div/input').send_keys(
+        phone)
+    rw()
+    d.find_element_by_xpath(
+        '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[2]/uni-input/div/input').send_keys(
+        123456)
+    rw()
+    d.find_element_by_xpath(
+        '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[3]/uni-view[1]/uni-view').click()
+    rw()
+    d.find_element_by_xpath(
+        '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[5]/uni-view/uni-view').click()
+    rw()
+    d.find_element_by_xpath(
+        '/html/body/uni-app/uni-page/uni-page-wrapper/uni-page-body/uni-view/uni-view[5]/uni-view[4]').click()
+    rw()
+    d.get('https://www.chaojijishi.com/h5/#/pages/subpack1/set/user-id-card-data?type=1')
+
