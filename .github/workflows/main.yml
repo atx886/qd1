@@ -42,8 +42,7 @@ jobs:
           tar -xvzf geckodriver-v0.18.0-linux64.tar.gz 
           cp geckodriver /root/bin
           export PATH=.:/root/bin:$PATH
-          export PATH.:/root/bin: $PATH
-          export DISPLAY=:10
+
 
 
           
