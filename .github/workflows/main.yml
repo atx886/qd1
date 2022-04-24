@@ -33,11 +33,10 @@ jobs:
 
           PUSH_PLUS_TOKEN: ${{secrets.PUSH_PLUS_TOKEN}}
         run: |
-          sudo apt-get install build-essential
-          sudo apt-get install yum
 
-          yum install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-          yum install mesa-libOSMesa-devel gnu-free-sans-fonts wqy-zenhei-fonts
+
+          sudo apt-get install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+          sudo apt-get install mesa-libOSMesa-devel gnu-free-sans-fonts wqy-zenhei-fonts
           wget https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           mv chromedriver /usr/bin/
